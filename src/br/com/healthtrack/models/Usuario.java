@@ -2,8 +2,6 @@ package br.com.healthtrack.models;
 
 import java.io.Serializable;
 
-import javax.imageio.event.IIOReadWarningListener;
-
 /**
  * Classe da abstração de usuário
  * 
@@ -26,13 +24,11 @@ public class Usuario implements Serializable {
 	// Atributos
 	private int idUsuario;
 	private String nome;
-	private String sobrenome;
-	private String senha;
 	private String email;
+	private String senha;
 	private double altura;
-	private int imc;
-	private int healthScore;
-	private String authToken;
+	String authToken;
+
 	private Atividade[] atividades;
 
 	public Usuario() {
@@ -50,15 +46,12 @@ public class Usuario implements Serializable {
 	 * @param healthScore pontuacao
 	 * @param authToken   token de autenticacao
 	 */
-	public Usuario(int idUsuario, String nome, String sobrenome, String senha, String email, double altura,
-			int healthScore, String authToken) {
+	public Usuario(int idUsuario, String nome, String senha, String email, double altura) {
 		this.idUsuario = idUsuario;
 		this.nome = nome;
-		this.sobrenome = sobrenome;
 		this.senha = senha;
 		this.email = email;
 		this.altura = altura;
-		this.healthScore = healthScore;
 	}
 
 	public Usuario(String nome, String senha, String email) {
@@ -94,11 +87,26 @@ public class Usuario implements Serializable {
 		if (senha == this.senha)
 			this.email = novoEmail;
 	}
-
-	/**
-	 * 
 	
+	/**
+	 * obtem o valor da senha
+	 * @return
 	 */
+	public String getSenha() {
+		return this.senha;
+	}
+	
+	/**
+	 * atualiza o valor da senha se ela tiver sido definida
+	 * @param senha senha
+	 */
+	public void setSenha(String senha) {
+		if (!(this.senha != null && this.senha.isEmpty())) {
+			this.senha = senha;
+		}
+	}
+
+
 
 	/**
 	 * Recebe a senha atual e verifica e trocar por uma nova senha
@@ -125,6 +133,11 @@ public class Usuario implements Serializable {
 		return this.atividades;
 	}
 
+	/**
+	 * obtem altura do usuario
+	 * 
+	 * @return
+	 */
 	public double getAltura() {
 		return altura;
 	}
@@ -138,31 +151,8 @@ public class Usuario implements Serializable {
 		this.altura = altura;
 	}
 
-	/**
-	 * obtem o imc do usuario
-	 * 
-	 * @return o imc do usuario
-	 */
-	public int getImc() {
-		return this.imc;
-	}
-
-	/**
-	 * Recebe o peso e altura e seta o IMC
-	 * 
-	 * @param peso   peso do usuario
-	 * @param altura altura do usuario
-	 */
-	public void setImc(double peso, double altura) {
-		this.imc = (int) (peso / (altura * altura));
-	}
-
 	public int getIdUsuario() {
 		return idUsuario;
-	}
-
-	public int getHealthScore() {
-		return healthScore;
 	}
 
 	public String getAuthToken() {
@@ -171,14 +161,6 @@ public class Usuario implements Serializable {
 
 	public static long getUsuarioserial() {
 		return usuarioSerial;
-	}
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
 	}
 
 }

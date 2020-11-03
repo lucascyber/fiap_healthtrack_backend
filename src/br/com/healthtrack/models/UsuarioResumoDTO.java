@@ -9,31 +9,36 @@ package br.com.healthtrack.models;
  */
 
 public class UsuarioResumoDTO {
-	private int idUsuario;
+	private int id;
 	private String nomeUsuario;
 	private String sobrenomeUsuario;
 	private String email;
 	private double peso;
 	private double altura;
+	private int pressao;
 	private double imc;
 	private int healthScore;
 	private String authToken;
 
-	public UsuarioResumoDTO(int id, String nome, String sobreNome, String email, double peso, double altura, double imc,
-			int healthscore, String authToken) {
-		this.idUsuario = id;
+	public UsuarioResumoDTO() {
+	}
+
+	public UsuarioResumoDTO(int id, String nome, String email, double peso, double altura, int pressao, int healthscore,
+			String authToken) {
+		this.id = id;
 		this.nomeUsuario = nome;
 		this.altura = altura;
 		this.email = email;
 		this.peso = peso;
 		this.altura = altura;
+		this.setPressao(pressao);
 		this.imc = (int) (peso / (altura * altura));
 		this.healthScore = healthscore;
 		this.authToken = authToken;
 	}
 
 	public int getIdUsuario() {
-		return idUsuario;
+		return id;
 	}
 
 	/**
@@ -42,7 +47,7 @@ public class UsuarioResumoDTO {
 	 * @param idUsuario codigo do usuario
 	 */
 	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+		this.id = idUsuario;
 	}
 
 	/**
@@ -164,6 +169,14 @@ public class UsuarioResumoDTO {
 
 	public void setAuthToken(String authToken) {
 		this.authToken = authToken;
+	}
+
+	public int getPressao() {
+		return pressao;
+	}
+
+	public void setPressao(int pressao) {
+		this.pressao = pressao;
 	}
 
 }

@@ -12,6 +12,7 @@ import java.util.Date;
 
 public class Peso {
 	private int idPeso;
+	private int usuarioId;
 	private double peso;
 	private Date data;
 
@@ -25,6 +26,20 @@ public class Peso {
 	public Peso(double peso) {
 		this.peso = peso;
 		this.data = new Date();
+	}
+	
+	/**
+	 * 
+	 * @param id codigo do registro
+	 * @param usuarioId codigo do usuario
+	 * @param peso peso
+	 * @param date data do registro
+	 */
+	public Peso(int id, int usuarioId, double peso,Date date) {
+		this.idPeso = id;
+		this.setUsuarioId(usuarioId); 
+		this.peso = peso;
+		this.data = date;
 	}
 	
 	/**
@@ -73,6 +88,14 @@ public class Peso {
 	 */
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public int getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(int usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 
 
